@@ -61,7 +61,7 @@ AND practice_id = 'F84062' <---- this chooses the pratice. It needs to exactly f
 ### Methods for selecting BNF codes
 
 You can see from the above example two different ways to select your data:
-- `=` - exact match to input e.g. `practice_id = 'F84062'`
+- `=` - exact match to input e.g. `bnf_code = '0205051AAAAAAAA'`
 - `LIKE` - partial match to input when used with wildcards: `%` for any number of wild characters, or `_` for single wild characters. They can be used in the middle of a given string e.g. `0205051AAAA__AA`
 
 To select a group of BNF codes you can use `IN` for a specific list of full BNF codes
@@ -69,8 +69,8 @@ To select a group of BNF codes you can use `IN` for a specific list of full BNF 
   WHERE bnf_code IN ('0205051AAAAAAAA','0205051AAAAABAB')
   ```
 
-Note you can't combine `LIKE` with `IN`, so to select a mixed group of codes:
-- You can simply list your criteria, linking them with `OR` e.g. 
+Usually, however, we want to select groups of *categories* rather than full codes. But you can't combine `LIKE` with `IN`, so to select a group of partial BNF codes (such as paragraphs or chemicals):
+- You can simply list all of your criteria, linking them with `OR` e.g. 
   ``` 
     WHERE bnf_code LIKE '040701%'
     OR bnf_code LIKE '040702%'```
