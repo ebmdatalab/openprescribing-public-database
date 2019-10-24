@@ -60,21 +60,15 @@ AND practice_id = 'F84062' <---- this chooses the pratice. It needs to exactly f
 
 ### Methods for selecting BNF codes
 
-You can see from the above example two different ways to select your data:
-- `=` - exact match to input e.g. `bnf_code = '0205051AAAAAAAA'`
-- `LIKE` - partial match to input when used with wildcards: `%` for any number of wild characters, or `_` for single wild characters. They can be used in the middle of a given string e.g. `0205051AAAA__AA`
-
-To select a group of BNF codes you can use `IN` for a specific list of full BNF codes
-  ```
-  WHERE bnf_code IN ('0205051AAAAAAAA','0205051AAAAABAB')
-  ```
-
-Usually, however, we want to select groups of *categories* rather than full codes. But you can't combine `LIKE` with `IN`, so to select a group of partial BNF codes (such as paragraphs or chemicals):
-- You can simply list all of your criteria, linking them with `OR` e.g. 
-  ``` 
-    WHERE bnf_code LIKE '040701%'
-    OR bnf_code LIKE '040702%'```
-- If this is overly cumbersome you can use the substring function `SUBSTR`, e.g. taking the first nine characters you can then input an `IN` list of 9-digit BNF *chemical* codes:
-  `WHERE SUBSTR(bnf_code,1,9) IN ('0407020B0','0407020A0')`
+```sql
+WHERE 
+bnf_code LIKE '0501013K0%'  -- as above - the % is used to represent any number of wild characters following the given string
+OR   -- use OR and AND in combination with brackets as needed to create your desired combination of criteria
+bnf_code LIKE '0205051AAAA__AA' -- as above but using the single-character wildcard 
+OR bnf_code = '0205051AAAAAAAA' -- exact match to full bnf code
+OR bnf_code IN ('0205051AAAAAAAA','0205051AAAAABAB') -- a list of full bnf codes
+OR SUBSTR(bnf_code,1,9) = '0407020B0' -- the substring function is used here to select the first nine characters, i.e. BNF chemical code
+OR SUBSTR(bnf_code,1,6) IN ('040702','040703') -- you can't combine `LIKE` with `IN`, so this is handy to select a group of partial BNF codes (such as paragraphs or chemicals)
+```
 
 
