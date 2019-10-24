@@ -57,7 +57,7 @@ AND practice_id = 'F84062' <---- this chooses the pratice. It needs to exactly f
 ```
 </details>
 
-<br>
+
 ### Methods for selecting BNF codes
 
 You can see from the above example two different ways to select your data:
@@ -66,7 +66,8 @@ You can see from the above example two different ways to select your data:
 
 To select a group of BNF codes you can use `IN` for a specific list of full BNF codes
   ```
-  WHERE bnf_code IN ('0205051AAAAAAAA','0205051AAAAABAB')```
+  WHERE bnf_code IN ('0205051AAAAAAAA','0205051AAAAABAB')
+  ```
 
 Note you can't combine `LIKE` with `IN`, so to select a mixed group of codes:
 - You can simply list your criteria, linking them with `OR` e.g. 
