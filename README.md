@@ -55,6 +55,10 @@ AND month = '2019-07-01' <---- this chooses the month. You have to select the fi
 AND practice_id = 'F84062' <---- this chooses the pratice. It needs to exactly fit the practice id
 
 ```
-</detail>
+</details>
 
+<br>
 
+You can see from the above example two different ways to select your data:
+`=` - exact match to input e.g. `practice_id = 'F84062'`
+`LIKE` - partial match when used with wildcards `%` for any number of wild characters, or `_` for single wild characters 
