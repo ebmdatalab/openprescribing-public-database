@@ -23,12 +23,12 @@ This table contains prescribing data. Each practice is denoted by a practice id 
 
 ![image](public_snapshot.PNG)
 
-For example say we want to extract number of co-amoxiclav prescriptions (BNF code '0501013K0') for one GP practice for 1 month, you can write a simple SQL query. In this scenario we will use practice id F84062 and month of July 2019. 
+For example say we want to extract number of co-amoxiclav prescriptions (BNF codes starting '0501013K0') for one GP practice for 1 month, you can write a simple SQL query. In this scenario we will use practice id F84062 and month of July 2019. 
 
 ```sql
 SELECT *
 FROM ebmdatalab.public_draft.prescribing
-WHERE bnf_code = '0501013K0'
+WHERE bnf_code LIKE '0501013K0%'
 AND month = '2019-07-01'
 AND practice_id = 'F84062'
 ```
@@ -48,7 +48,7 @@ SELECT *   <--- this selects all answers
 
 FROM ebmdatalab.public_draft.prescribing <--- this tells the query which tables to look at. In this case the prescribing table. 
 
-WHERE bnf_code = '0501013K0%' <---- this chooses a BNF code that starts with the code for co-amoxiclav. See below for more info. 
+WHERE bnf_code LIKE '0501013K0%' <---- this chooses a BNF code that starts with the code for co-amoxiclav. See below for more info. 
 
 AND month = '2019-07-01' <---- this chooses the month. You have to select the first day of the month to get results as prescribing data is released monthly
 
